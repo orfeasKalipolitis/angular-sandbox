@@ -1,0 +1,7 @@
+<div style="text-align:center">
+  <form>
+    <input type="text" placeholder="New page name" name="pageNameInput" [(ngModel)]="newPageName" required />
+    <input type="submit" value="Add Page" (click)="addPage()" />
+  </form>
+  <a routerLink=""><button>Cancel</button></a>
+</div>
