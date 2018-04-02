@@ -1,0 +1,11 @@
+<div style="text-align: center">
+
+  <span>
+    <button type="button" class="btn btn-info">Settings</button>
+    <a routerLink="userPageCreator"><button type="button" class="btn btn-primary">+</button></a>    
+  </span>
+  <h2>User Pages</h2>
+  <p *ngFor="let page of userPages">
+    {{ page.name }}
+  </p>  
+</div>
