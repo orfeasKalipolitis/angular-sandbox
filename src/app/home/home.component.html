@@ -6,7 +6,7 @@
   </span>
   <br />
   <h2>User Pages</h2>
-  <p class="userPage" *ngFor="let page of userPages">
+  <p class="userPage" *ngFor="let page of userPages" (click)="pageClicked(page)">
     {{ page.name }}
   </p>
 </div>

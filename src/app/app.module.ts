@@ -10,13 +10,17 @@ import { UserPageCreatorComponent } from './user-page-creator/user-page-creator.
 import { NewPageNameDataService } from './new-page-name-data.service';
 
 import { FormsModule } from '@angular/forms';
+import { MyAutoFocusDirective } from './my-auto-focus.directive';
+import { UserPageDetailsComponent } from './user-page-details/user-page-details.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     AboutComponent,
-    UserPageCreatorComponent
+    UserPageCreatorComponent,
+    MyAutoFocusDirective,
+    UserPageDetailsComponent
   ],
   imports: [
     BrowserModule,

@@ -4,6 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { AboutComponent } from './about/about.component';
 import { UserPageCreatorComponent } from './user-page-creator/user-page-creator.component';
+import { UserPageDetailsComponent } from './user-page-details/user-page-details.component';
 
 const routes: Routes = [
   {
@@ -17,6 +18,10 @@ const routes: Routes = [
   {
     component: UserPageCreatorComponent,
     path: 'userPageCreator'
+  },
+  {
+    component: UserPageDetailsComponent,
+    path: 'userPage'
   }
 ];
 
