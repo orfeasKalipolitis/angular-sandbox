@@ -23,4 +23,8 @@ export class NewPageNameDataService {
     this.ActivePage.next(page);
   }
 
+  updateActivePage(page) {
+    this.ActivePage.next(page);
+  }
+
 }

@@ -11,12 +11,25 @@ import { Router } from '@angular/router';
 })
 export class UserPageDetailsComponent implements OnInit {
 
+  settings: Boolean = false;
   activePage: any;
+  newPageName: '';
 
   constructor(public router: Router, private _data: NewPageNameDataService) { }
 
   ngOnInit() {
     this._data.activePageO.subscribe(res => this.activePage = res);
+  }
+
+  changePageName() {
+    this.activePage.name = this.newPageName;
+    this._data.updateActivePage(this.activePage);
+    this.settings = false;
+  }
+
+  cancel() {
+    this.settings = false;
+    this.newPageName = '';
   }
 
 }

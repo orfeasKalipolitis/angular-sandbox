@@ -1,10 +1,31 @@
 <div style="text-align:center">
   <h2>{{ activePage.name }}</h2>
-  <span>
-    <button type="button" class="btn btn-info">Page Settings</button>
-    <button type="button" class="btn btn-primary">Add Post</button>    
-  </span>
   <br />
-  <h3>User Posts</h3>
-
+  <div *ngIf="settings; else normalPage">
+    <form>
+      <input type="text" appMyAutoFocus placeholder="New page name" name="pageNameInput" [(ngModel)]="newPageName" required />
+      <input type="submit" value="Change Page Name" (click)="changePageName()" />
+    </form>
+    <br />
+    <span>
+      <button type="button" class="btn btn-secondary" (click)="cancel()">
+        Cancel
+      </button>
+      <button type="button" class="btn btn-danger">
+        Delete Page
+      </button>
+    </span>
+  </div>
+  <ng-template #normalPage>
+    <span>
+        <button type="button" class="btn btn-info" (click)="settings = true">Page Settings</button>
+        <button type="button" class="btn btn-primary">Add Post</button>    
+    </span>
+    <br />
+    <h3>User Posts</h3>
+  </ng-template>
+  <!--
+    
+  -->
+    
 </div>
