@@ -27,6 +27,11 @@ export class UserPageDetailsComponent implements OnInit {
     this.settings = false;
   }
 
+  deletePage() {
+    this._data.deleteActivePage();
+    this.router.navigate(['']);  
+  }
+
   cancel() {
     this.settings = false;
     this.newPageName = '';

@@ -27,4 +27,13 @@ export class NewPageNameDataService {
     this.ActivePage.next(page);
   }
 
+  deleteActivePage() {
+    let tmpUP = this.UserPages.value.slice();
+    let index = tmpUP.indexOf(this.ActivePage.value);
+    
+    tmpUP.splice(index, 1);
+
+    this.UserPages.next(tmpUP);
+  }
+
 }
