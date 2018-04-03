@@ -16,10 +16,16 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     this._data.userPagesO.subscribe(res => this.userPages = res);
+    this._data.updateBackButton(false);
+  }
+
+  ngAfterViewInit() {
+    this._data.updateBackButton(false);
   }
 
   pageClicked(page) {
     this._data.changeActivePage(page);
+    this._data.updateBackButton(true);
     this.router.navigate(['userPage']);
   }
 }
