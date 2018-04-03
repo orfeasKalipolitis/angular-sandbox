@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { AboutComponent } from './about/about.component';
 import { UserPageCreatorComponent } from './user-page-creator/user-page-creator.component';
+import { NewPageNameDataService } from './new-page-name-data.service';
 
 import { FormsModule } from '@angular/forms';
 
@@ -22,7 +23,7 @@ import { FormsModule } from '@angular/forms';
     AppRoutingModule,
     FormsModule
   ],
-  providers: [],
+  providers: [NewPageNameDataService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

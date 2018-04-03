@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 
 import { Router } from '@angular/router';
 
+import { NewPageNameDataService } from '../new-page-name-data.service';
+
 @Component({
   selector: 'app-user-page-creator',
   templateUrl: './user-page-creator.component.html',
@@ -9,15 +11,19 @@ import { Router } from '@angular/router';
 })
 export class UserPageCreatorComponent implements OnInit {
 
-  newPageName: '';
+  newPageName: String = '';
+  sepName: any;
 
-  constructor(public router: Router) { }
+  constructor(public router: Router, private _data: NewPageNameDataService) { }
 
   ngOnInit() {
+    this._data.newName.subscribe(res => this.sepName = res);
+    this._data.changeName(this.newPageName);
   }
 
   addPage() {
     console.log(this.newPageName);
+    this._data.changeName(this.newPageName);
     this.router.navigate(['']);
   }
 }

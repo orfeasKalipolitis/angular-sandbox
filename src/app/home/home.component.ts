@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
+import { NewPageNameDataService } from '../new-page-name-data.service';
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -7,10 +9,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  userPages = [];
-  constructor() { }
+  newPage: any;
+  userPages: any;
+  constructor(private _data: NewPageNameDataService) { }
 
   ngOnInit() {
+    this._data.userPagesO.subscribe(res => this.userPages = res);
   }
 
 }
