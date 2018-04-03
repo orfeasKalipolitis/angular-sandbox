@@ -17,12 +17,10 @@ export class UserPageCreatorComponent implements OnInit {
   constructor(public router: Router, private _data: NewPageNameDataService) { }
 
   ngOnInit() {
-    this._data.newName.subscribe(res => this.sepName = res);
-    this._data.changeName(this.newPageName);
+    this._data.newName.subscribe(res => this.newPageName = res);
   }
 
   addPage() {
-    console.log(this.newPageName);
     this._data.changeName(this.newPageName);
     this.router.navigate(['']);
   }
