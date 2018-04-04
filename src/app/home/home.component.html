@@ -11,12 +11,22 @@
     </p>
   </div>
   <div *ngIf="settings">
+    <br />
+    <span>
+      <button class="btn btn-secondary" (click)="exportJSON()">
+        Export JSON
+      </button>
+      <button class="btn btn-secondary" (click)="importJSON()">
+        Import JSON
+      </button>
+    </span>
+    <br />
     <form>
       <label>Post prefix: </label>
       <input name="settingsInput" value="{{ tmpPrefix }}" [(ngModel)]="tmpPrefix" appMyAutoFocus />
       <input type="submit" value="Change prefix" (click)="changePrefix()" />
       <button type="button" class="btn btn-info" (click)="cancel()">
-        Cancel
+        Back
       </button>
     </form>
   </div>

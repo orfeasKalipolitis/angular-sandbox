@@ -4,6 +4,8 @@ import { NewPageNameDataService } from '../new-page-name-data.service';
 
 import { Router } from '@angular/router';
 
+var FileSaver = require('file-saver')
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -42,6 +44,15 @@ export class HomeComponent implements OnInit {
   changePrefix() {
     this._data.updatePrefix(this.tmpPrefix);
     this.cancel();
+  }
+
+  exportJSON() {
+    let jsonData = '{' + 
+    '"UserPages": ' + JSON.stringify(this.userPages) + 
+    ', "prefix": ' + '"' + this.postPrefix + '"' +
+    '}';
+    var blob = new Blob([jsonData], {type: 'text/plain;charset=utf-8'})
+    FileSaver.saveAs(blob, 'project-data.json')
   }
 
   cancel() {
