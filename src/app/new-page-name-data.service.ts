@@ -17,7 +17,7 @@ export class NewPageNameDataService {
 
   changeName(pageName) {
     let tmpUP = this.UserPages.value.slice();
-    tmpUP.push({name: pageName});
+    tmpUP.push({name: pageName, posts: []});
     this.UserPages.next(tmpUP);
   }
 

@@ -12,8 +12,10 @@ import { Router } from '@angular/router';
 export class UserPageDetailsComponent implements OnInit {
 
   settings: Boolean = false;
+  addingPost: Boolean = false;
   activePage: any;
   newPageName: '';
+  newPostName: '';
 
   constructor(public router: Router, private _data: NewPageNameDataService) { }
 
@@ -27,15 +29,32 @@ export class UserPageDetailsComponent implements OnInit {
     this.settings = false;
   }
 
+  addPost() {
+    console.log(this.newPostName)
+    this.activePage.posts.push({name: this.newPostName});
+    this._data.updateActivePage(this.activePage);
+    this.cancel();
+  }
+
   deletePage() {
     this._data.deleteActivePage();
     this._data.updateBackButton(false);
     this.router.navigate(['']);  
   }
 
+  inSettings() {
+    return !this.addingPost && this.settings;
+  }
+
+  inStdPage() {
+    return !this.addingPost && !this.settings;
+  }
+
   cancel() {
     this.settings = false;
+    this.addingPost = false;
     this.newPageName = '';
+    this.newPostName = '';
   }
 
 }

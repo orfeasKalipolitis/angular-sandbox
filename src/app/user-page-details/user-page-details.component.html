@@ -1,7 +1,7 @@
 <div style="text-align:center">
   <h2>{{ activePage.name }}</h2>
   <br />
-  <div *ngIf="settings; else normalPage">
+  <div *ngIf="inSettings()">
     <form>
       <input type="text" appMyAutoFocus placeholder="New page name" name="pageNameInput" [(ngModel)]="newPageName" required />
       <input type="submit" value="Change Page Name" (click)="changePageName()" />
@@ -16,16 +16,26 @@
       </button>
     </span>
   </div>
-  <ng-template #normalPage>
+  <div *ngIf="inStdPage()">
     <span>
-        <button type="button" class="btn btn-info" (click)="settings = true">Page Settings</button>
-        <button type="button" class="btn btn-primary">Add Post</button>    
+      <button type="button" class="btn btn-info" (click)="settings = true">Page Settings</button>
+      <button type="button" class="btn btn-primary" (click)="addingPost=true">Add Post</button>    
     </span>
     <br />
+  </div>
+  <div *ngIf="addingPost">
+    <form>
+      <input type="text" required name="postNameInput" [(ngModel)]="newPostName" placeholder="New post name" />
+      <input type="submit" (click)="addPost()" value="Add Post" />
+      <button type="button" class="btn btn-secondary" (click)="cancel()">
+        Cancel
+      </button>
+    </form>
+  </div>
+  <div>
     <h3>User Posts</h3>
-  </ng-template>
-  <!--
-    
-  -->
-    
+    <p *ngFor="let post of activePage.posts" class="userPost">
+      {{ post.name }}
+    </p>
+  </div>
 </div>
