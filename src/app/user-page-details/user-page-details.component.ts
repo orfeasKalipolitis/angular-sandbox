@@ -58,6 +58,13 @@ export class UserPageDetailsComponent implements OnInit {
     this.router.navigate(['']);  
   }
 
+  deletePost() {
+    let index = this.activePage.posts.indexOf(this.focusedPost);
+    this.activePage.posts.splice(index, 1);
+    this._data.updateActivePage(this.activePage);
+    this.cancel();
+  }
+
   inSettings() {
     return !this.addingPost && !this.focused && this.settings;
   }
