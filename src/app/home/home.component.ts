@@ -12,11 +12,16 @@ import { Router } from '@angular/router';
 export class HomeComponent implements OnInit {
 
   userPages: any;
+  postPrefix: any;
+  tmpPrefix: '';
+  settings: Boolean = false;
+
   constructor(public router: Router, private _data: NewPageNameDataService) { }
 
   ngOnInit() {
     this._data.userPagesO.subscribe(res => this.userPages = res);
     this._data.updateBackButton(false);
+    this._data.prefixO.subscribe(res => this.postPrefix = res)
   }
 
   ngAfterViewInit() {
@@ -27,5 +32,20 @@ export class HomeComponent implements OnInit {
     this._data.changeActivePage(page);
     this._data.updateBackButton(true);
     this.router.navigate(['userPage']);
+  }
+
+  gotoSettings() {
+    this.settings = true;
+    this.tmpPrefix = this.postPrefix;
+  }
+
+  changePrefix() {
+    this._data.updatePrefix(this.tmpPrefix);
+    this.cancel();
+  }
+
+  cancel() {
+    this.tmpPrefix = '';
+    this.settings = false;
   }
 }

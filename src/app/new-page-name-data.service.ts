@@ -8,10 +8,12 @@ export class NewPageNameDataService {
   private UserPages = new BehaviorSubject<any>([]);
   private ActivePage = new BehaviorSubject<any>({});
   private BackButton = new BehaviorSubject<Boolean>(false);
+  private Prefix = new BehaviorSubject<String>('');
   newName = this.newNameP.asObservable();
   userPagesO = this.UserPages.asObservable();
   activePageO = this.ActivePage.asObservable();
   backButtonO = this.BackButton.asObservable();
+  prefixO = this.Prefix.asObservable();
 
   constructor() { }
 
@@ -27,6 +29,10 @@ export class NewPageNameDataService {
 
   updateActivePage(page) {
     this.ActivePage.next(page);
+  }
+
+  updatePrefix(prefix) {
+    this.Prefix.next(prefix);
   }
 
   deleteActivePage() {

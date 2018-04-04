@@ -1,12 +1,23 @@
 <div style="text-align: center">
-
-  <span>
-    <button type="button" class="btn btn-info">Settings</button>
-    <a routerLink="userPageCreator"><button type="button" class="btn btn-primary">+</button></a>    
-  </span>
-  <br />
-  <h2>User Pages</h2>
-  <p class="userPage" *ngFor="let page of userPages" (click)="pageClicked(page)">
-    {{ page.name }}
-  </p>
+  <div *ngIf="!settings">
+    <span>
+      <button type="button" class="btn btn-info" (click)="gotoSettings()">Settings</button>
+      <a routerLink="userPageCreator"><button type="button" class="btn btn-primary">+</button></a>    
+    </span>
+    <br />
+    <h2>User Pages</h2>
+    <p class="userPage" *ngFor="let page of userPages" (click)="pageClicked(page)">
+      {{ page.name }}
+    </p>
+  </div>
+  <div *ngIf="settings">
+    <form>
+      <label>Post prefix: </label>
+      <input name="settingsInput" value="{{ tmpPrefix }}" [(ngModel)]="tmpPrefix" appMyAutoFocus />
+      <input type="submit" value="Change prefix" (click)="changePrefix()" />
+      <button type="button" class="btn btn-info" (click)="cancel()">
+        Cancel
+      </button>
+    </form>
+  </div>
 </div>

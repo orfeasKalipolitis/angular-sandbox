@@ -15,6 +15,7 @@ export class UserPageDetailsComponent implements OnInit {
   addingPost: Boolean = false;
   focused: Boolean = false;
   activePage: any;
+  postPrefix: any;
   newPageName: '';
   newPostName: '';
   focusedPost: any;
@@ -23,6 +24,7 @@ export class UserPageDetailsComponent implements OnInit {
 
   ngOnInit() {
     this._data.activePageO.subscribe(res => this.activePage = res);
+    this._data.prefixO.subscribe(res => this.postPrefix = res);
   }
 
   changePageName() {
