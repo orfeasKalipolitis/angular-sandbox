@@ -46,4 +46,8 @@ export class NewPageNameDataService {
     this.BackButton.next(value);
   }
 
+  updateUserPages(newUP) {
+    this.UserPages.next(newUP);
+  }
+
 }

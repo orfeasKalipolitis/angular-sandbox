@@ -16,9 +16,8 @@
       <button class="btn btn-secondary" (click)="exportJSON()">
         Export JSON
       </button>
-      <button class="btn btn-secondary" (click)="importJSON()">
-        Import JSON
-      </button>
+      <br />
+      <label>Choose a JSON file: </label><input type="file" class="holySpirit" (change)="importJSON($event)" />
     </span>
     <br />
     <form>

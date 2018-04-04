@@ -3,8 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { NewPageNameDataService } from '../new-page-name-data.service';
 
 import { Router } from '@angular/router';
-
-var FileSaver = require('file-saver')
+import { FileSaver } from 'file-saver';
 
 @Component({
   selector: 'app-home',
@@ -53,6 +52,22 @@ export class HomeComponent implements OnInit {
     '}';
     var blob = new Blob([jsonData], {type: 'text/plain;charset=utf-8'})
     FileSaver.saveAs(blob, 'project-data.json')
+  }
+
+  importJSON(event) {
+    var file = event.target.files[0];
+
+    var fr = new FileReader();
+
+    var that = this;
+    fr.onload = function () {
+      let jsonObj = JSON.parse(this.result);
+      that._data.updatePrefix(jsonObj.prefix);
+      that._data.updateUserPages(jsonObj.UserPages.slice());
+      that.tmpPrefix = jsonObj.prefix;
+    }
+
+    fr.readAsText(file);
   }
 
   cancel() {
