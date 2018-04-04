@@ -32,10 +32,23 @@
       </button>
     </form>
   </div>
-  <div>
+  <div *ngIf="!focused">
     <h3>User Posts</h3>
-    <p *ngFor="let post of activePage.posts" class="userPost">
+    <p *ngFor="let post of activePage.posts" class="userPost" (click)="focus(post)" >
       {{ post.name }}
     </p>
+  </div>
+  <div *ngIf="focused">
+      <h4>{{ focusedPost.name }}</h4>
+      <form>
+          <input type="text" required name="postNameChangeInput" [(ngModel)]="newPostName" placeholder="New post name" />
+          <input type="submit" (click)="changePostName()" value="Change name" />
+          <button type="button" class="btn btn-secondary" (click)="cancel()">
+            Cancel
+          </button>
+          <button type="button" class="btn btn-danger" (click)="deletePost()">
+            Delete Post
+          </button>  
+        </form>
   </div>
 </div>

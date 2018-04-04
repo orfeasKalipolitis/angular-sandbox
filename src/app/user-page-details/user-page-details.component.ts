@@ -13,9 +13,11 @@ export class UserPageDetailsComponent implements OnInit {
 
   settings: Boolean = false;
   addingPost: Boolean = false;
+  focused: Boolean = false;
   activePage: any;
   newPageName: '';
   newPostName: '';
+  focusedPost: any;
 
   constructor(public router: Router, private _data: NewPageNameDataService) { }
 
@@ -36,6 +38,20 @@ export class UserPageDetailsComponent implements OnInit {
     this.cancel();
   }
 
+  focus(post) {
+    this.focusedPost = post;
+    this.focused = true;
+  }
+
+  changePostName() {
+    let post = Object.assign({}, this.focusedPost);
+    post.name = this.newPostName;
+    let index = this.activePage.posts.indexOf(this.focusedPost);
+    this.activePage.posts[index] = Object.assign({}, post);
+    this._data.updateActivePage(this.activePage);
+    this.cancel();
+  }
+
   deletePage() {
     this._data.deleteActivePage();
     this._data.updateBackButton(false);
@@ -43,18 +59,20 @@ export class UserPageDetailsComponent implements OnInit {
   }
 
   inSettings() {
-    return !this.addingPost && this.settings;
+    return !this.addingPost && !this.focused && this.settings;
   }
 
   inStdPage() {
-    return !this.addingPost && !this.settings;
+    return !this.addingPost && !this.focused && !this.settings;
   }
 
   cancel() {
     this.settings = false;
     this.addingPost = false;
+    this.focused = false;
     this.newPageName = '';
     this.newPostName = '';
+    this.focusedPost = null;
   }
 
 }
